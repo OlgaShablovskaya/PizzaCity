@@ -40,7 +40,7 @@ abstract class PizzaCity(
 
         if (totalCheckPhotos > 0 || totalDrinksSold > 0 || totalSaucesSold > 0) { //вывод доп информации при наличии в городе
 
-            if (totalDrinksSold > 0) {                                       //для общей статистики
+            if (totalDrinksSold > 0) {                                      
                 println("Количество проданных кофе: $totalDrinksSold")
                 println("Общая сумма выручки за кофе: $totalDrinksRevenue")
             }
@@ -57,11 +57,11 @@ abstract class PizzaCity(
         }
     }
 
-    fun showStatistics() {
+    fun showStatistics() {                   //для общей статистики
 
-        val totalRevenue = calculateTotalRevenue()
-        println("Общая выручка: $totalRevenue")
+        val totalRevenue = calculateTotalRevenue() // расчет общей выручки
 
+        println("Общая выручка: $totalRevenue")   
         showPercentageStatistics()
         println("Продано сицилийской пиццы: $sicilianPizzaCount")  // статистика по каждому виду пиццы
         println("Продано неаполитанской пиццы: $neapolitanPizzaCount")
