@@ -68,7 +68,7 @@ class PizzaKrasnodar(
 
     override fun choiceOfSauce() {
         println("Вы будете соус?")
-        println("1. Да мексиканский\n2. Да сырный\n4. Нет")
+        println("1. Да мексиканский\n2. Да сырный\n 3. Нет")
         val choice = readln()
         if (choice == "1" || choice == "2") {
             println("С вас 30 рублей за соус")
