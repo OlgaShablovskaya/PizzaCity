@@ -12,13 +12,20 @@ fun main() {
         180.5,
         215.0
     )
+    val  pizzaKrasnodar = PizzaKrasnodar(
+        150.0,
+        240.5,
+        160.5,
+        215.0
+    )
     var currentPizzaCity: PizzaCity
     while (true) {
-        println("Добрый день! ВЫберите город")
-        println("1. Москва\n 2. Санкт-Петербург\n\n 0. Выход из программы")
+        println("Добрый день! Выберите город")
+        println("1. Москва\n 2. Санкт-Петербург\n 3.Краснодар\n 0. Выход из программы")
         currentPizzaCity = when (readln()) {
             "1" -> pizzaMoscow
             "2" -> pizzaPeter
+            "3" -> pizzaKrasnodar // добавляю Краснодар
             "0" -> break
             else -> {
                 println("ERROR")
@@ -62,9 +69,9 @@ private fun selectPizza(currentPizzaCity: PizzaCity) {
 }
 
 fun selectAddService(currentPizzaCity: PizzaCity) {
-        when (currentPizzaCity) {
-            is CheckPhoto -> currentPizzaCity.showCheckPhoto()
-            is Drink -> currentPizzaCity.drinkSale()
-        }
+    when (currentPizzaCity) {
+        is CheckPhoto -> currentPizzaCity.showCheckPhoto()
+        is Drink -> currentPizzaCity.drinkSale()
+        is Sauce -> currentPizzaCity.choiceOfSauce()
     }
-
+}
