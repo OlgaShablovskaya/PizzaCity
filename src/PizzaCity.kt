@@ -79,7 +79,7 @@ abstract class PizzaCity(
         }
     }
 
-    private fun calculateTotalRevenue(): Double {  //общая статистика
+    private fun calculateTotalRevenue(): Double {  //расчет общей выручки
         return neapolitanPizzaCount * neapolitanPizzaPrice +
                 romanPizzaCount * romanPizzaPrice +
                 sicilianPizzaCount * sicilianPizzaPrice +
