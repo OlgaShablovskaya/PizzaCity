@@ -25,36 +25,20 @@ abstract class PizzaCity(
 
         val percentageCheckPhotos = calculatePercentage(totalCheckPhotos, totalPizzasSold)
         val percentageDrinksSold = calculatePercentage(totalDrinksSold, totalPizzasSold)
+        val percentageSaucesSold = calculatePercentage(totalSaucesSold, totalPizzasSold)
 
         val percentageNoCheck = 100.0 - percentageCheckPhotos
         val percentageNoCoffee = 100.0 - percentageDrinksSold
+        val percentageNoSauces = 100.0 - percentageSaucesSold
 
         println("Процент людей, показывающих фотографию чека: $percentageCheckPhotos%")
         println("Процент людей, покупающих кофе: $percentageDrinksSold%")
+        println("Процент людей, покупающих соусы: $percentageSaucesSold%")
         println("Процент людей, НЕ показывающих фотографию чека: $percentageNoCheck%")
         println("Процент людей, НЕ покупающих кофе: $percentageNoCoffee%")
+        println("Процент людей, НЕ покупающих соусы: $percentageNoSauces%")
 
-        if (totalCheckPhotos > 0) {
-
-            if (totalDrinksSold > 0) {  // статистика по пиццам и кофе
-                println("Процент людей, покупающих кофе с неаполитанской пиццей: ${
-                    calculatePercentage(totalDrinksSold, neapolitanPizzaCount)
-                }%")
-                println("Процент людей, покупающих кофе с римской пиццей: ${
-                    calculatePercentage(totalDrinksSold, romanPizzaCount)
-                }%")
-                println("Процент людей, покупающих кофе с сицилийской пиццей: ${
-                    calculatePercentage(totalDrinksSold, sicilianPizzaCount)
-                }%")
-                println("Процент людей, покупающих кофе с тирольской пиццей: ${
-                    calculatePercentage(totalDrinksSold, tyroleanPizzaCount)
-                }%")
-            }
-
-            if (totalDiscounts > 0) {
-                println("Количество показанных чеков: $totalCheckPhotos")
-                println("Общая сумма скидок(*в руб*): $totalDiscounts")
-            }
+        if (totalCheckPhotos > 0 || totalDrinksSold > 0 || totalSaucesSold > 0) {
 
             if (totalDrinksSold > 0) {
                 println("Количество проданных кофе: $totalDrinksSold")
@@ -65,27 +49,45 @@ abstract class PizzaCity(
                 println("Количество проданных соусов: $totalSaucesSold")
                 println("Общая сумма выручки за соусы: $totalSaucesRevenue")
             }
+
+            if (totalCheckPhotos > 0) {
+                println("Количество показанных чеков: $totalCheckPhotos")
+                println("Общая сумма скидок(*в руб*): $totalDiscounts")
+            }
         }
     }
 
     fun showStatistics() {
+
+        val totalRevenue = calculateTotalRevenue()
+        println("Общая выручка: $totalRevenue")
+
+        showPercentageStatistics()
         println("Продано сицилийской пиццы: $sicilianPizzaCount")
         println("Продано неаполитанской пиццы: $neapolitanPizzaCount")
         println("Продано римской пиццы: $romanPizzaCount")
         println("Продано тирольской пиццы: $tyroleanPizzaCount")
-        val money =
-            neapolitanPizzaCount * neapolitanPizzaPrice + romanPizzaCount * romanPizzaPrice +
-                    sicilianPizzaCount * sicilianPizzaPrice + tyroleanPizzaCount * tyroleanPizzaPrice // заработано денег
-        println("Всего заработано денег: $money")
 
-        showPercentageStatistics()
+
     }
 
     private fun calculatePercentage(part: Int, total: Int): Double {
         return if (total != 0) {
-            (part.toDouble() / total.toDouble()) * 100.0
+            (part.toDouble() / total.toDouble()) * 100.0     //функция для расчета %
         } else {
             0.0
         }
     }
+
+    private fun calculateTotalRevenue(): Double {  //общая статистика
+        return neapolitanPizzaCount * neapolitanPizzaPrice +
+                romanPizzaCount * romanPizzaPrice +
+                sicilianPizzaCount * sicilianPizzaPrice +
+                tyroleanPizzaCount * tyroleanPizzaPrice +
+                totalDrinksRevenue +
+                totalSaucesRevenue -
+                totalDiscounts
+    }
 }
+
+
