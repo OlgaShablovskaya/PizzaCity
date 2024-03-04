@@ -8,30 +8,33 @@ class PizzaPeter(
     override fun drinkSale() {
         println("Вы будете кофе?")
         println("1.Да\n 2.Нет")
-        if (readln() == "1") println("С вас 200 рублей")
+        val choice = readln()
+        if (choice == "1") {
+            println("С вас 200 рублей за кофе")
+            totalDrinksSold++  //количество проданных кофе
+            totalDrinksRevenue += 200.0 // общая сумма выручки за кофе
+        }
     }
 
     override fun neapolitanPizzaSale() {
-        neapolitanPizzaCount++
+        neapolitanPizzaCount++ // подсчет для пицц
         println("Спасибо за покупку неаполитанской пиццы в Санкт-Петербурге")
     }
 
     override fun romanPizzaSale() {
-        romanPizzaCount++
+        romanPizzaCount++ // подсчет для пицц
         println("Спасибо за покупку  римской пиццы в Санкт-Петербурге")
     }
 
     override fun sicilianPizzaSale() {
-        sicilianPizzaCount++
+        sicilianPizzaCount++ // подсчет для пицц
         println("Спасибо за покупку сицилийской пиццы в Санкт-Петербурге")
     }
 
     override fun tyroleanPizzaSale() {
-        tyroleanPizzaCount++
+        tyroleanPizzaCount++ // подсчет для пицц
         println("Спасибо за покупку тирольской пиццы в Санкт- Петербурге")
     }
 }
-
-
 
 
